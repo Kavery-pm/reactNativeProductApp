@@ -4,20 +4,23 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Colors from './src/constants/colors'
 import ProductListScreen from './src/screens/ProductListScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ProductDetailScreen from './src/screens/ProductDetailScreen';
+import { NavigationContainer } from '@react-navigation/native';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
+     <NavigationContainer>
+    
     <Stack.Navigator>
-    <LinearGradient
-    colors={[Colors.primary700, Colors.accent500]}
-    style={styles.rootScreen}
-  >
+   
     <Stack.Screen name="Products" component={ProductListScreen} />
-    </LinearGradient>
+    <Stack.Screen name="detail" component={ProductDetailScreen} />
+   
   </Stack.Navigator>
- 
+  
+  </NavigationContainer>
     </>
    
   );

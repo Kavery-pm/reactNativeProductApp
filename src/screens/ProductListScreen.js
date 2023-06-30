@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { FlatList, SafeAreaView, StyleSheet } from "react-native";
 import { fetchProducts } from "../services/product-api";
 import ProductGrid from "../components/ProductGrid";
-const ProductListScreen = () => {
+import { LinearGradient } from 'expo-linear-gradient';
+import Colors from '../../src/constants/colors'
+const ProductListScreen = ({navigation}) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetchProductData();
@@ -19,12 +21,18 @@ const ProductListScreen = () => {
 
   const renderProductItem = ({ item }) => {
     const viewProductHandler = () => {
-      console.log("hi");
+        navigation.navigate('detail',{
+            product:item
+         });
     };
     return <ProductGrid item={item} onPress={viewProductHandler} />;
   };
 
   return (
+    <LinearGradient
+    colors={[Colors.primary700, Colors.accent500]}
+    style={styles.rootScreen}
+  >
     <SafeAreaView style={styles.container}>
       <FlatList
         data={products}
@@ -34,6 +42,7 @@ const ProductListScreen = () => {
         keyExtractor={(item) => item.id.toString()}
       />
     </SafeAreaView>
+    </LinearGradient>
   );
 };
 const styles = StyleSheet.create({
