@@ -1,20 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
+import { LinearGradient } from 'expo-linear-gradient';
+import Colors from './src/constants/colors'
+import ProductListScreen from './src/screens/ProductListScreen';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <LinearGradient
+    colors={[Colors.primary700, Colors.accent500]}
+    style={styles.rootScreen}
+  >
+  <ProductListScreen/>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent:'center',
+    textAlign:'center',
+
+  },
+  rootScreen: {
+    flex: 1,
+  
   },
 });
