@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Colors from '../../src/constants/colors'
-const ProductDetailScreen = ()=>{
+const ProductDetailScreen = ({route})=>{
+    const { product } = route.params;
     return (
         <LinearGradient
         colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
       >
         <View>
-            <Text>Detail</Text>
+            <Text>{product.title}</Text>
         </View>
         </LinearGradient>
     )
