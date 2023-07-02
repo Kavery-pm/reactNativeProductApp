@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, TextInput } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, TextInput,ActivityIndicator,View } from "react-native";
 import { fetchProducts } from "../services/product-api";
 import ProductGrid from "../components/ProductGrid";
 import { LinearGradient } from "expo-linear-gradient";
@@ -8,6 +8,7 @@ const ProductListScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setsearchQuery] = useState("");
   const [filteredProducts, setfilteredProducts] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
     fetchProductData();
   }, []);
@@ -17,7 +18,9 @@ const ProductListScreen = ({ navigation }) => {
 
   const fetchProductData = async () => {
     try {
+        setisLoading(true);
       const response = await fetchProducts();
+      setisLoading(false);
       setProducts(response);
     } catch (error) {
       console.error(error);
@@ -49,20 +52,28 @@ const ProductListScreen = ({ navigation }) => {
         value={searchQuery}
         onChangeText={(text) => setsearchQuery(text)}
       />
+       {isLoading?(
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator  size="large" color="black"/>
+                </View>
+            ):(
       <LinearGradient
         colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
       >
         <SafeAreaView style={styles.container}>
+           
+
+          
           <FlatList
             data={filteredProducts}
             renderItem={renderProductItem}
             style={styles.productsList}
             contentContainerStyle={styles.productsListContainer}
             keyExtractor={(item) => item.id.toString()}
-          />
+          /> 
         </SafeAreaView>
-      </LinearGradient>
+      </LinearGradient>)}
     </>
   );
 };
