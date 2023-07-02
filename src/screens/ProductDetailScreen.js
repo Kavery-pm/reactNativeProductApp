@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Animated } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "../../src/constants/colors";
 import TypewriterEffectText from "../animations/TypingAnimation";
