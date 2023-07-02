@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, TextInput,ActivityIndicator,View } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, TextInput,ActivityIndicator,View,RefreshControl } from "react-native";
 import { fetchProducts } from "../services/product-api";
 import ProductGrid from "../components/ProductGrid";
 import { LinearGradient } from "expo-linear-gradient";
@@ -9,6 +9,7 @@ const ProductListScreen = ({ navigation }) => {
   const [searchQuery, setsearchQuery] = useState("");
   const [filteredProducts, setfilteredProducts] = useState([]);
   const [isLoading, setisLoading] = useState(false);
+  const [isRefreshing, setisRefreshing] = useState(false);
   useEffect(() => {
     fetchProductData();
   }, []);
@@ -19,9 +20,12 @@ const ProductListScreen = ({ navigation }) => {
   const fetchProductData = async () => {
     try {
         setisLoading(true);
+        setisRefreshing(true)
       const response = await fetchProducts();
-      setisLoading(false);
+    
       setProducts(response);
+      setisLoading(false);
+      setisRefreshing(false)
     } catch (error) {
       console.error(error);
     }
@@ -69,6 +73,8 @@ const ProductListScreen = ({ navigation }) => {
             data={filteredProducts}
             renderItem={renderProductItem}
             style={styles.productsList}
+            refreshControl={
+                <RefreshControl refreshing={isRefreshing} onRefresh={() => fetchProductData()} />}
             contentContainerStyle={styles.productsListContainer}
             keyExtractor={(item) => item.id.toString()}
           /> 
