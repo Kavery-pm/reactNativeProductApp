@@ -39,7 +39,7 @@ const ProductListScreen = ({ navigation }) => {
     setfilteredProducts(filtered);
   };
   const renderProductItem = ({ item }) => {
-    console.log(item);
+  
     const viewProductHandler = () => {
       navigation.navigate("detail", {
         product: item,

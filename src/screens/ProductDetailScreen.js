@@ -45,13 +45,14 @@ const styles = StyleSheet.create({
       width: 0,
     },
     elevation: 1,
-    marginVertical: 20,
+    //marginVertical: 20,
+    margin:10
   },
   image: {
-    margin: 10,
-    padding: 30,
+    margin: 5,
+    padding:30,
     height: 300,
-    width: "100%",
+    //width: "100%",
   },
   infoContainer: {
     padding: 16,
