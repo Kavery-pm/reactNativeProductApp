@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, TextInput,ActivityIndicator,View,RefreshControl,Text } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  ActivityIndicator,
+  View,
+  RefreshControl,
+  Text,
+} from "react-native";
 import { fetchProducts } from "../services/product-api";
 import ProductGrid from "../components/ProductGrid";
 import { LinearGradient } from "expo-linear-gradient";
@@ -19,13 +28,13 @@ const ProductListScreen = ({ navigation }) => {
 
   const fetchProductData = async () => {
     try {
-        setisLoading(true);
-        setisRefreshing(true)
+      setisLoading(true);
+      setisRefreshing(true);
       const response = await fetchProducts();
-    
+
       setProducts(response);
       setisLoading(false);
-      setisRefreshing(false)
+      setisRefreshing(false);
     } catch (error) {
       console.error(error);
     }
@@ -44,26 +53,21 @@ const ProductListScreen = ({ navigation }) => {
         colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
       >
-       
-           <View style={styles.notFoundContainer}>
-           <Text>Product not found</Text>
-           </View>
-
-    
-        
-      </LinearGradient>)
-  
-    
+        <View style={styles.notFoundContainer}>
+          <Text>Product not found</Text>
+        </View>
+      </LinearGradient>
+    );
   }
   const renderProductItem = ({ item }) => {
-  
     const viewProductHandler = () => {
-        console.log(item)
       navigation.navigate("detail", {
         product: item,
       });
     };
-    return <ProductGrid item={item} onPress={viewProductHandler.bind(this,item)} />;
+    return (
+      <ProductGrid item={item} onPress={viewProductHandler.bind(this, item)} />
+    );
   };
 
   return (
@@ -74,30 +78,32 @@ const ProductListScreen = ({ navigation }) => {
         value={searchQuery}
         onChangeText={(text) => setsearchQuery(text)}
       />
-       {isLoading?(
-                <View style={styles.loadingContainer}>
-                    <ActivityIndicator  size="large" color="black"/>
-                </View>
-            ):(
-      <LinearGradient
-        colors={[Colors.primary700, Colors.accent500]}
-        style={styles.rootScreen}
-      >
-        <SafeAreaView style={styles.container}>
-           
-
-          
-          <FlatList
-            data={filteredProducts}
-            renderItem={renderProductItem}
-            style={styles.productsList}
-            refreshControl={
-                <RefreshControl refreshing={isRefreshing} onRefresh={() => fetchProductData()} />}
-            contentContainerStyle={styles.productsListContainer}
-            keyExtractor={(item) => item.id.toString()}
-          /> 
-        </SafeAreaView>
-      </LinearGradient>)}
+      {isLoading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="black" />
+        </View>
+      ) : (
+        <LinearGradient
+          colors={[Colors.primary700, Colors.accent500]}
+          style={styles.rootScreen}
+        >
+          <SafeAreaView style={styles.container}>
+            <FlatList
+              data={filteredProducts}
+              renderItem={renderProductItem}
+              style={styles.productsList}
+              refreshControl={
+                <RefreshControl
+                  refreshing={isRefreshing}
+                  onRefresh={() => fetchProductData()}
+                />
+              }
+              contentContainerStyle={styles.productsListContainer}
+              keyExtractor={(item) => item.id.toString()}
+            />
+          </SafeAreaView>
+        </LinearGradient>
+      )}
     </>
   );
 };
@@ -125,8 +131,8 @@ const styles = StyleSheet.create({
   },
   notFoundContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 16,
   },
 });

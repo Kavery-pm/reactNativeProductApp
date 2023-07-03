@@ -11,7 +11,7 @@ const ProductDetailScreen = ({ route }) => {
       style={styles.rootScreen}
     >
       <View style={styles.container}>
-        <Text style={{textAlign:'center'}}>No product found.</Text>
+        <Text style={{textAlign:'center'}}>No Detail found.Please select a product to view the details</Text>
       </View>
       </LinearGradient>
     );
