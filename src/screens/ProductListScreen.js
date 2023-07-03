@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, StyleSheet, TextInput,ActivityIndicator,View,RefreshControl } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, TextInput,ActivityIndicator,View,RefreshControl,Text } from "react-native";
 import { fetchProducts } from "../services/product-api";
 import ProductGrid from "../components/ProductGrid";
 import { LinearGradient } from "expo-linear-gradient";
@@ -38,6 +38,23 @@ const ProductListScreen = ({ navigation }) => {
     });
     setfilteredProducts(filtered);
   };
+  if (filteredProducts.length === 0 && !isLoading) {
+    return (
+      <LinearGradient
+        colors={[Colors.primary700, Colors.accent500]}
+        style={styles.rootScreen}
+      >
+       
+           <View style={styles.notFoundContainer}>
+           <Text>Product not found</Text>
+           </View>
+
+    
+        
+      </LinearGradient>)
+  
+    
+  }
   const renderProductItem = ({ item }) => {
   
     const viewProductHandler = () => {
@@ -85,6 +102,9 @@ const ProductListScreen = ({ navigation }) => {
   );
 };
 const styles = StyleSheet.create({
+  rootScreen: {
+    flex: 1,
+  },
   loadingContainer: {
     flex: 1,
     justifyContent: "center",
@@ -102,6 +122,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 10,
+  },
+  notFoundContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
   },
 });
 export default ProductListScreen;
