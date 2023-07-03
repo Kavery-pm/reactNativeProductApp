@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+
 import ProductDetailScreen from './src/screens/ProductDetailScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import ProductListStack from './src/navigation/ProductListStack';
  import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 
  const Tab = createBottomTabNavigator();
 
@@ -12,7 +13,13 @@ export default function App() {
      <NavigationContainer >
     <Tab.Navigator>
       <Tab.Screen name="productList" component={ProductListStack} options={{ headerShown: false }}/>
-       <Tab.Screen name="detail" component={ProductDetailScreen}/> 
+      <Tab.Screen
+          name="detail"
+          component={ProductDetailScreen}
+          options={{
+            title: 'Product Detail'
+          }}/>
+      
     </Tab.Navigator>
     
   
@@ -22,24 +29,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent:'center',
-    textAlign:'center',
-
-  },
-  rootScreen: {
-    flex: 1,
-  
-  },
-});
-{/* <Stack.Navigator screenOptions={{
-      headerStyle:{backgroundColor:'yellow'},
-      contentStyle:{backgroundColor:'pink'}
-     }}>
-   
-    <Stack.Screen name="Products" component={ProductListScreen} />
-    <Stack.Screen name="detail" component={ProductDetailScreen} />
-   
-  </Stack.Navigator> */}

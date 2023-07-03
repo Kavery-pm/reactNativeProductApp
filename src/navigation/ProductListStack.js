@@ -6,7 +6,7 @@ const ProductListStack = ()=>{
     <Stack.Navigator>
      
       <Stack.Screen name="Products" component={ProductListScreen} />
-    
+   
      
     </Stack.Navigator>)
 }
