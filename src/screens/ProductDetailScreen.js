@@ -4,6 +4,18 @@ import Colors from "../../src/constants/colors";
 import TypewriterEffectText from "../animations/TypingAnimation";
 import FadeInAnimationEffect from "../animations/fadeInAnimation";
 const ProductDetailScreen = ({ route }) => {
+  if (!route || !route.params) {
+    return (
+      <LinearGradient
+      colors={[Colors.primary700, Colors.accent500]}
+      style={styles.rootScreen}
+    >
+      <View style={styles.container}>
+        <Text style={{textAlign:'center'}}>No product found.</Text>
+      </View>
+      </LinearGradient>
+    );
+  }
   const { product } = route.params;
 
   return (
