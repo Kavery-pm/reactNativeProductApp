@@ -12,7 +12,7 @@ const TypewriterEffectText = ({ text, speed, style }) => {
           textIndex.current += 1;
           return previousText + nextCharacter;
         }
-        clearInterval(typingInterval); //cleanup
+        clearInterval(typingInterval); 
         return previousText;
       });
     }, speed);

@@ -1,10 +1,7 @@
 const Colors = {
-  primary500: '#ffb3e6',  // Light Pink
-  primary600: '#ff66b3',  // Pink
-  primary700: '#ff99b3',  // Dark Pink
-  primary800: '#e60073',  // Deep Pink
-  accent500: '#005ce6',   //#005ce6 Light Blue
-       
+  primary500: '#72063c',
+  primary600: '#640233',
+  primary700: '#4e0329',
+  primary800: '#3b021f',
+  accent500: '#ddb52f'
 };
-  
-  export default Colors;
