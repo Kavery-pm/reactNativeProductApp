@@ -5,6 +5,7 @@ import TypewriterEffectText from "../animations/TypingAnimation";
 import FadeInAnimationEffect from "../animations/fadeInAnimation";
 const ProductDetailScreen = ({ route }) => {
   const { product } = route.params;
+
   return (
     <LinearGradient
       colors={[Colors.primary700, Colors.accent500]}

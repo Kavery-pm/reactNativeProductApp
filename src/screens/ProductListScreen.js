@@ -41,11 +41,12 @@ const ProductListScreen = ({ navigation }) => {
   const renderProductItem = ({ item }) => {
   
     const viewProductHandler = () => {
+        console.log(item)
       navigation.navigate("detail", {
         product: item,
       });
     };
-    return <ProductGrid item={item} onPress={viewProductHandler} />;
+    return <ProductGrid item={item} onPress={viewProductHandler.bind(this,item)} />;
   };
 
   return (

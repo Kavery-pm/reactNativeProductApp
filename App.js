@@ -1,27 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import Colors from './src/constants/colors'
-import ProductListScreen from './src/screens/ProductListScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
 import ProductDetailScreen from './src/screens/ProductDetailScreen';
 import { NavigationContainer } from '@react-navigation/native';
-const Stack = createNativeStackNavigator();
+import ProductListStack from './src/navigation/ProductListStack';
+ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <>
      <NavigationContainer >
+    <Tab.Navigator>
+      <Tab.Screen name="productList" component={ProductListStack} options={{ headerShown: false }}/>
+       <Tab.Screen name="detail" component={ProductDetailScreen}/> 
+    </Tab.Navigator>
     
-    <Stack.Navigator screenOptions={{
-      headerStyle:{backgroundColor:'yellow'},
-      contentStyle:{backgroundColor:'pink'}
-     }}>
-   
-    <Stack.Screen name="Products" component={ProductListScreen} />
-    <Stack.Screen name="detail" component={ProductDetailScreen} />
-   
-  </Stack.Navigator>
   
   </NavigationContainer>
     </>
@@ -41,3 +34,12 @@ const styles = StyleSheet.create({
   
   },
 });
+{/* <Stack.Navigator screenOptions={{
+      headerStyle:{backgroundColor:'yellow'},
+      contentStyle:{backgroundColor:'pink'}
+     }}>
+   
+    <Stack.Screen name="Products" component={ProductListScreen} />
+    <Stack.Screen name="detail" component={ProductDetailScreen} />
+   
+  </Stack.Navigator> */}
