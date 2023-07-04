@@ -49,7 +49,14 @@ const ProductListScreen = ({ navigation }) => {
   };
   if (filteredProducts.length === 0 && !isLoading) {
     return (
-      <LinearGradient
+      <>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search products..."
+        value={searchQuery}
+        onChangeText={(text) => setsearchQuery(text)}
+      />
+        <LinearGradient
         colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
       >
@@ -57,6 +64,8 @@ const ProductListScreen = ({ navigation }) => {
           <Text>Product not found</Text>
         </View>
       </LinearGradient>
+      </>
+    
     );
   }
   const renderProductItem = ({ item }) => {
